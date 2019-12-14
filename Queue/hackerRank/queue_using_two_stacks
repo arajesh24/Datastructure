@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define max 100000
+long int queue[max];
+int front=-1,rear=-1;
+void insert(void);
+void delete_element(void);
+int peek(void);
+int main() {
+int n,i,option;
+long long int val;
+scanf("%d",&n);
+for(i=0;i<n;i++){
+scanf("%d",&option);
+switch(option){
+    
+    case 1: 
+insert(); break;
+case 2: delete_element();
+break;
+case 3:  val=peek();
+if(val!=-1){
+    printf("%lld\n",val);
+   
+}
+break;
+}
+}  
+    return 0;
+}
+void insert(){
+    int num;
+    scanf("%d",&num);
+if(rear==max-1){
+    printf("overflow");
+}else if(front==-1 && rear==-1){
+    front=rear=0;
+
+}else 
+rear++;
+queue[rear]=num;
+}
+
+void delete_element(){
+    if(front==-1 || front>rear){
+        printf("underflow");
+    }else{
+        front++;
+        if(front>rear){
+            front=rear=-1;
+        }
+    }
+}
+int peek(){
+    if(front==-1 || front>rear){
+        printf("queue is empty");
+        return -1;
+    }else{
+        return queue[front];
+    }
+}
